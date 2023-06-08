@@ -1,0 +1,78 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.yanzhenjie.andserver'
+}
+
+android {
+    namespace 'com.sprintray.internet'
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "com.sprintray.internet"
+        minSdk 21
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    sourceSets {
+        main {
+            aidl {
+                srcDirs 'src\\main\\aidl'
+            }
+        }
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.1'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.4.1'
+
+    //rx权限请求
+    api "com.github.tbruyelle:rxpermissions:0.12"
+    //network
+
+    api "com.squareup.okhttp3:okhttp:4.9.1"
+    api "com.squareup.retrofit2:retrofit:2.9.0"
+    api "com.squareup.retrofit2:converter-gson:2.9.0"
+    api "com.squareup.retrofit2:adapter-rxjava3:2.9.0"
+
+    api 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+    //json解析
+    api "com.google.code.gson:gson:2.8.9"
+
+
+    implementation project(':utils')
+    implementation('com.yanzhenjie.andserver:api:2.1.10')
+    implementation 'androidx.core:core-ktx:1.7.0'
+    compileOnly files('libs/framework.jar')
+    annotationProcessor  'com.yanzhenjie.andserver:processor:2.1.10'
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}
